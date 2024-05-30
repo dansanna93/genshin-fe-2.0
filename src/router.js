@@ -1,9 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router';
-import Home from './components/Home.vue';
-import Login from './components/Login.vue';
-import Register from './components/Register.vue';
+import Home from './view/Home.vue';
+import Login from './view/Login.vue';
+import Register from './view/Register.vue';
+import Characters from './view/Characters';
+import CharacterDetails from './view/CharacterDetails.vue';
 // lazy-loaded
-const Profile = () => import('./components/Profile.vue');
+const Profile = () => import('./view/Profile.vue');
 const BoardUser = () => import('./components/BoardUser.vue');
 
 const routes = [
@@ -11,31 +13,42 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
-    meta: { title: 'Genshin Impact | Homepage' },
+    meta: { title: 'Genshin Impact | Homepage', public: true },
+  },
+  {
+    path: '/characters',
+    name: 'characters',
+    component: Characters,
+    meta: { title: 'Genshin Impact | Characters', public: true },
+  },
+  {
+    path: '/characters/:id',
+    component: CharacterDetails,
+    meta: { public: true },
   },
   {
     path: '/login',
     component: Login,
-    meta: { title: 'Genshin Impact | Login' },
+    meta: { title: 'Genshin Impact | Login', public: true },
   },
   {
     path: '/register',
     component: Register,
-    meta: { title: 'Genshin Impact | Register' },
+    meta: { title: 'Genshin Impact | Register', public: true },
   },
   {
     path: '/profile',
     name: 'profile',
     // lazy-loaded
     component: Profile,
-    meta: { title: 'Genshin Impact | Profile' },
+    meta: { title: 'Genshin Impact | Profile', public: false },
   },
   {
     path: '/user',
     name: 'user',
     // lazy-loaded
     component: BoardUser,
-    meta: { title: 'Genshin Impact | User Board' },
+    meta: { title: 'Genshin Impact | User Board', public: false },
   },
 ];
 
@@ -45,19 +58,17 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/register', '/'];
-  const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 
   //trying to access a restricted page + not logged in
   //redirect to login page
-  if (authRequired && !loggedIn) {
+  if (!to.meta.public && !loggedIn) {
     next('login');
   } else {
     next();
   }
 
-  document.title = to.meta?.title ?? 'Default Title';
+  document.title = to.meta?.title ?? 'Loading...';
 });
 
 export default router;

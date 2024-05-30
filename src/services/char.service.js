@@ -1,12 +1,17 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/characters';
+const API_URL = 'http://localhost:8080/api/characters/';
 
 class CharService {
   async getCharactersList() {
     const characters = await axios.get(API_URL);
-    /* console.log(characters.data); */
     return characters;
+  }
+
+  async getCharacterDetails(name) {
+    const character = await axios.get(API_URL + '?name=' + name);
+    console.log(character);
+    return character;
   }
 }
 

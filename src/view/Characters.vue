@@ -1,8 +1,6 @@
 <template>
-  <div class="myContainer">
-    <h3>Character List</h3>
-    <CharacterList :characters="characters" />
-  </div>
+  <h3>Characters</h3>
+  <CharacterList :characters="characters" />
 </template>
 
 <script>
@@ -21,21 +19,13 @@ export default {
   created() {
     CharService.getCharactersList().then((response) => {
       this.characters = response.data;
-      console.log(this.characters);
     });
   },
 };
 </script>
 
 <style scoped>
-.myContainer {
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  max-width: 500px;
-  margin: 30px auto;
-  min-height: 300px;
-  padding: 30px;
-  border-radius: 5px;
+.col-md-12 {
+  align-content: center;
 }
 </style>

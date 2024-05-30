@@ -1,11 +1,16 @@
 <template>
-  <div>
+  <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <a href class="navbar-brand" @click.prevent>Genshin Impact</a>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link to="/" class="nav-link">
             <font-awesome-icon icon="home" /> Home
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/characters" class="nav-link">
+            <font-awesome-icon icon="ghost" /> Characters
           </router-link>
         </li>
         <li class="nav-item">
@@ -41,7 +46,7 @@
       </div>
     </nav>
     <div class="container">
-      <router-view />
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -63,8 +68,17 @@ export default {
 </script>
 
 <style>
-body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+#app {
   font-family: 'Poppins', sans-serif;
+}
+.container {
+  text-align: center;
+  /*   align-items: center;
+ */
+  justify-content: left;
+  padding: 30px;
+  border-radius: 5px;
   background-color: aqua;
 }
 </style>
