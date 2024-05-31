@@ -4,6 +4,7 @@ import Login from './view/Login.vue';
 import Register from './view/Register.vue';
 import Characters from './view/Characters';
 import CharacterDetails from './view/CharacterDetails.vue';
+import Search from './view/Search.vue';
 // lazy-loaded
 const Profile = () => import('./view/Profile.vue');
 const BoardUser = () => import('./components/BoardUser.vue');
@@ -35,6 +36,11 @@ const routes = [
     path: '/register',
     component: Register,
     meta: { title: 'Genshin Impact | Register', public: true },
+  },
+  {
+    path: '/search',
+    component: Search,
+    meta: { title: 'Genshin Impact | Search', public: true },
   },
   {
     path: '/profile',

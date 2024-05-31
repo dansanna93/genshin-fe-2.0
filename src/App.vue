@@ -14,6 +14,11 @@
           </router-link>
         </li>
         <li class="nav-item">
+          <router-link to="/search" class="nav-link">
+            <font-awesome-icon icon="magnifying-glass" /> Search
+          </router-link>
+        </li>
+        <li class="nav-item">
           <router-link v-if="currentUser" to="/user" class="nav-link"
             >User</router-link
           >
@@ -74,8 +79,7 @@ export default {
 }
 .container {
   text-align: center;
-  /*   align-items: center;
- */
+  align-items: center;
   justify-content: left;
   padding: 30px;
   border-radius: 5px;

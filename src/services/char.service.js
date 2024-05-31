@@ -10,8 +10,20 @@ class CharService {
 
   async getCharacterDetails(name) {
     const character = await axios.get(API_URL + '?name=' + name);
-    console.log(character);
     return character;
+  }
+
+  async searchChar(char) {
+    const characters = await axios.get(
+      API_URL +
+        '?rarity=' +
+        char.rarity +
+        '&weapon=' +
+        char.weapon +
+        '&vision=' +
+        char.vision
+    );
+    return characters;
   }
 }
 
